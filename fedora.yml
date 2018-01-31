@@ -2,7 +2,7 @@
 - hosts: localhost
   tasks:
   
-  - name: Visual
+  - name: Visual Repo
     shell:  'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 
   - name: Instalar modulos do python.
@@ -34,6 +34,9 @@
   - name: Telegram
     shell:  'dnf copr enable rommon/telegram -y'
 
+  - name: Firefox Nightly
+    shell:  'dnf copr enable eclipseo/firefox-nightly -y'
+
   - name: Fedora Version
     shell: 'rpm -E %fedora'
     register: fedora_version
@@ -51,6 +54,11 @@
   - name: Chave do Visual Studio
     shell:  'rpm --import https://packages.microsoft.com/keys/microsoft.asc'
 
+  - name: Pacote Flash Adobe
+    shell:  'rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm'
+
+  - name: Chave Flash Adobe
+    shell:  'rpm --import https://packages.microsoft.com/keys/microsoft.asc'
 
   - name: Visual Studio Package.
     dnf:
@@ -77,3 +85,10 @@
       - gnome-shell-extension-window-list.noarch
       - gnome-shell-extension-media-player-indicator.noarch
       - telegram-desktop
+      - spotify-client
+      - vlc
+      - flash-plugin 
+      - alsa-plugins-pulseaudio 
+      - libcurl
+      - firefox-nightly
+      
