@@ -1,0 +1,79 @@
+---
+- hosts: localhost
+  tasks:
+  
+  - name: Visual
+    shell:  'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+
+  - name: Instalar modulos do python.
+    dnf:
+      name: python2
+      state: present
+
+  - name: Instalar modulo dnf do python.
+    dnf:
+      name: dnf-plugins-core
+      state: present
+
+  - name: Docker
+    shell:  'dnf config-manager \
+      --add-repo \
+      https://download.docker.com/linux/fedora/docker-ce.repo'
+  
+  - name: Spotify
+    shell:  'dnf config-manager \
+      --add-repo \
+      https://negativo17.org/repos/fedora-spotify.repo'
+
+  - name: Materia Theme
+    shell:  'dnf copr enable tcg/themes -y'
+
+  - name: Papirus Icons
+    shell:  'dnf copr enable dirkdavidis/papirus-icon-theme -y'
+  
+  - name: Telegram
+    shell:  'dnf copr enable rommon/telegram -y'
+
+  - name: Fedora Version
+    shell: 'rpm -E %fedora'
+    register: fedora_version
+
+  - name: RPM Fusion
+    dnf:
+      name: 'https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version.stdout }}.noarch.rpm'
+      state: present
+
+  - name: RPM Fusion Non Free
+    dnf:
+      name: 'https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version.stdout }}.noarch.rpm'
+      state: present
+
+  - name: Chave do Visual Studio
+    shell:  'rpm --import https://packages.microsoft.com/keys/microsoft.asc'
+
+
+  - name: Visual Studio Package.
+    dnf:
+      name: code
+      state: present
+
+  - name: Instalando os pacotes do SO
+    action: >
+      {{ ansible_pkg_mgr }} name={{ item }} state=present
+    with_items:
+      - vim
+      - dropbox
+      - nautilus-dropbox
+      - git
+      - docker-ce
+      - gnome-tweak-tool
+      - gtk-murrine-engine
+      - materia-theme
+      - papirus-icon-theme
+      - gnome-shell-extension-apps-menu.noarch
+      - gnome-shell-extension-dash-to-dock.noarch
+      - gnome-shell-extension-alternate-tab.noarch
+      - gnome-shell-extension-screenshot-window-sizer.noarch
+      - gnome-shell-extension-window-list.noarch
+      - gnome-shell-extension-media-player-indicator.noarch
+      - telegram-desktop
