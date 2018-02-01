@@ -44,4 +44,5 @@ ansible-playbook -i "localhost," -c local fedora.yml
 * libcurl
 * firefox-nightly
 * java-1.8.0-openjdk
+* keepass
       
