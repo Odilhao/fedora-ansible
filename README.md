@@ -43,4 +43,5 @@ ansible-playbook -i "localhost," -c local fedora.yml
 * alsa-plugins-pulseaudio 
 * libcurl
 * firefox-nightly
+* java-1.8.0-openjdk
       
