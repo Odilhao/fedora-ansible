@@ -1,0 +1,30 @@
+---
+- hosts: localhost
+  tasks:
+  - name: Centos images
+    docker_image:
+      name: centos
+  - name: Ubuntu 
+    docker_image:
+      name: ubuntu
+  - name: Mongo 
+    docker_image:
+      name: mongo
+  - name: Fedora
+    docker_image:
+      name: fedora
+  - name: Rocket Chat
+    docker_image:
+      name: rocket.chat
+  - name: Debian
+    docker_image:
+      name: debian
+  - name: Mysql
+    docker_image:
+      name: mysql
+  - name: Build Image Centos Systemd
+    docker_image: >
+      name="systemd-centos"
+      tag="latest"
+      path="$PWD/docker-systemd/"
+      state=build
