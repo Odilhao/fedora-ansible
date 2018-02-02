@@ -16,6 +16,9 @@ Rodando o playbook
 ansible-playbook -i "localhost," -c local fedora.yml
 ``` 
 
+```python
+ansible-playbook -i "localhost," -c local docker-images.yml
+```
 
 
 #### Pacotes instalados
