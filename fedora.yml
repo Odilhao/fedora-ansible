@@ -93,3 +93,6 @@
       - firefox-nightly
       - java-1.8.0-openjdk
       - keepass
+      - python-docker-py.noarch
+      - python3-streamlink
+      - mpv
