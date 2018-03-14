@@ -13,11 +13,11 @@ git clone git@github.com:Odilhao/fedora-ansible.git
 Rodando o playbook
 
 ```python
-ansible-playbook -i "localhost," --become --ask-become-pass -c local fedora.yml
+ansible-playbook -i "localhost," --ask-become-pass -c local fedora.yml
 ``` 
 
 ```python
-ansible-playbook -i "localhost," --become --ask-become-pass -c local docker-images.yml
+ansible-playbook -i "localhost," --ask-become-pass -c local docker-images.yml
 ```
 
 

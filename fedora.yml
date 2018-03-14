@@ -4,67 +4,84 @@
   
   - name: Visual Repo
     shell:  'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+    become: true
 
   - name: Instalar modulos do python.
     dnf:
       name: python2
       state: present
+    become: true
 
   - name: Instalar modulo dnf do python.
     dnf:
       name: dnf-plugins-core
       state: present
+    become: true
 
   - name: Docker
     shell:  'dnf config-manager \
       --add-repo \
       https://download.docker.com/linux/fedora/docker-ce.repo'
-  
+    become: true
+
   - name: Spotify
     shell:  'dnf config-manager \
       --add-repo \
       https://negativo17.org/repos/fedora-spotify.repo'
+    become: true
 
   - name: Materia Theme
     shell:  'dnf copr enable tcg/themes -y'
+    become: true
 
   - name: Papirus Icons
     shell:  'dnf copr enable dirkdavidis/papirus-icon-theme -y'
-  
+    become: true
+
   - name: Telegram
     shell:  'dnf copr enable rommon/telegram -y'
+    become: true
 
   - name: Firefox Nightly
     shell:  'dnf copr enable eclipseo/firefox-nightly -y'
+    become: true
 
   - name: Fedora Version
     shell: 'rpm -E %fedora'
     register: fedora_version
+    become: true
 
   - name: RPM Fusion
     dnf:
       name: 'https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version.stdout }}.noarch.rpm'
       state: present
+    become: true
 
   - name: RPM Fusion Non Free
     dnf:
       name: 'https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version.stdout }}.noarch.rpm'
       state: present
+    become: true
 
   - name: Chave do Visual Studio
     shell:  'rpm --import https://packages.microsoft.com/keys/microsoft.asc'
-
+    become: true
+    
   - name: Pacote Flash Adobe
     shell:  'dnf install http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm -y'
+    become: true
 
   - name: Chave Flash Adobe
     shell:  'rpm --import https://packages.microsoft.com/keys/microsoft.asc'
+    become: true
 
   - name: Visual Studio Package.
     dnf:
       name: code
       state: present
+    become: true
 
+    
   - name: Instalando os pacotes do SO
     action: >
       {{ ansible_pkg_mgr }} name={{ item }} state=present
@@ -101,3 +118,4 @@
       - perl-Gtk2-Notify.x86_64
       - synce-gnome.noarch
       - fontawesome-fonts
+    become: true
