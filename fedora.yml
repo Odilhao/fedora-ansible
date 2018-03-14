@@ -102,6 +102,7 @@
       - libcurl
       - firefox-nightly
       - java-1.8.0-openjdk
+<<<<<<< HEAD
       - keepassxc
       - i3
       - i3status
@@ -119,3 +120,9 @@
       - synce-gnome.noarch
       - fontawesome-fonts
     become: true
+=======
+      - keepass
+      - python-docker-py.noarch
+      - python3-streamlink
+      - mpv
+>>>>>>> d2b14ce63d22d9400f226faa2cc2b7ca12252b88
