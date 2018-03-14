@@ -55,7 +55,7 @@
     shell:  'rpm --import https://packages.microsoft.com/keys/microsoft.asc'
 
   - name: Pacote Flash Adobe
-    shell:  'rpm -ivh http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm'
+    shell:  'dnf install http://linuxdownload.adobe.com/adobe-release/adobe-release-x86_64-1.0-1.noarch.rpm -y'
 
   - name: Chave Flash Adobe
     shell:  'rpm --import https://packages.microsoft.com/keys/microsoft.asc'
@@ -74,16 +74,9 @@
       - nautilus-dropbox
       - git
       - docker-ce
-      - gnome-tweak-tool
       - gtk-murrine-engine
       - materia-theme
       - papirus-icon-theme
-      - gnome-shell-extension-apps-menu.noarch
-      - gnome-shell-extension-dash-to-dock.noarch
-      - gnome-shell-extension-alternate-tab.noarch
-      - gnome-shell-extension-screenshot-window-sizer.noarch
-      - gnome-shell-extension-window-list.noarch
-      - gnome-shell-extension-media-player-indicator.noarch
       - telegram-desktop
       - spotify-client
       - vlc
@@ -92,4 +85,19 @@
       - libcurl
       - firefox-nightly
       - java-1.8.0-openjdk
-      - keepass
+      - keepassxc
+      - i3
+      - i3status
+      - dmenu
+      - i3lock
+      - xbacklight
+      - feh
+      - conky
+      - dunst
+      - rofi
+      - feh
+      - pavucontrol
+      - scrot
+      - perl-Gtk2-Notify.x86_64
+      - synce-gnome.noarch
+      - fontawesome-fonts
