@@ -46,6 +46,10 @@
     shell:  'dnf copr enable eclipseo/firefox-nightly -y'
     become: true
 
+  - name: Firefox Nightly
+    shell:  'dnf copr enable thofmann/rofi -y'
+    become: true
+
   - name: Fedora Version
     shell: 'rpm -E %fedora'
     register: fedora_version
@@ -117,4 +121,5 @@
       - perl-Gtk2-Notify.x86_64
       - synce-gnome.noarch
       - fontawesome-fonts
+      - rofi
     become: true
