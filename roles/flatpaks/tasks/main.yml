@@ -6,15 +6,64 @@
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: user
 
-- name: Install multiple packages
+- name: Install the Bluejeans package from flathub for current user
   community.general.flatpak:
-    name:
-      - com.bluejeans.BlueJeans
-      - com.dropbox.Client
-      - com.obsproject.Studio
-      - com.spotify.Client
-      - org.telegram.desktop
-      - org.videolan.VLC
-      - org.qbittorrent.qBittorrent
-      - org.libreoffice.LibreOffice
-      - im.riot.Riot
+    name: com.bluejeans.BlueJeans
+    state: present
+    method: user
+
+
+- name: Install the Dropbox package from flathub for current user
+  community.general.flatpak:
+    name: com.dropbox.Client
+    state: present
+    method: user
+
+
+- name: Install the OBS package from flathub for current user
+  community.general.flatpak:
+    name: com.obsproject.Studio
+    state: present
+    method: user
+
+
+- name: Install the Spotify package from flathub for current user
+  community.general.flatpak:
+    name: com.spotify.Client
+    state: present
+    method: user
+
+
+- name: Install the Telegram package from flathub for current user
+  community.general.flatpak:
+    name: org.telegram.desktop
+    state: present
+    method: user
+
+
+- name: Install the VLC package from flathub for current user
+  community.general.flatpak:
+    name: org.videolan.VLC
+    state: present
+    method: user
+
+
+- name: Install the qBittorrents package from flathub for current user
+  community.general.flatpak:
+    name: org.qbittorrent.qBittorrents
+    state: present
+    method: user
+
+
+- name: Install the LibreOffice package from flathub for current user
+  community.general.flatpak:
+    name: org.libreoffice.LibreOffice
+    state: present
+    method: user
+
+
+- name: Install the Element package from flathub for current user
+  community.general.flatpak:
+    name: im.riot.Riot
+    state: present
+    method: user
