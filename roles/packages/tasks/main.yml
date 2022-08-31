@@ -1,0 +1,71 @@
+---
+- name: Fedora Version
+  shell: 'rpm -E %fedora'
+  register: fedora_version
+
+- name: Vscodium Repo
+  ansible.builtin.yum_repository:
+    name: vscodium
+    description: Vscodium yum repo
+    baseurl: https://paulcarroty.gitlab.io/vscodium-deb-rpm-repo/rpms/
+    gpgcheck: yes
+    gpgkey: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/-/raw/master/pub.gpg
+    enabled: yes
+  become: true
+
+- name: RPM Fusion
+  dnf:
+    name: 'https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ fedora_version.stdout }}.noarch.rpm'
+    state: present
+    disable_gpg_check: yes
+  become: true
+
+- name: RPM Fusion Non Free
+  dnf:
+   name: 'https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ fedora_version.stdout }}.noarch.rpm'
+   state: present
+   disable_gpg_check: yes
+  become: true
+
+- name: Install the 'Development tools' package group
+  ansible.builtin.dnf:
+    name: '@Development tools'
+    state: present
+  become: true
+
+- name: Install the 'virtualization' package group
+  ansible.builtin.dnf:
+    name: '@virtualization'
+    state: present
+  become: true
+
+- name: SO packages
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present
+  with_items:
+    - vim
+    - git
+    - podman
+    - git-annex
+    - gopass
+    - nautilus
+    - gnome-terminal-nautilus
+    - openvpn
+    - NetworkManager-openvpn
+    - bluez
+    - blueman
+    - NetworkManager-bluetooth
+    - codium
+    - flatpak
+    - xbacklight
+    - feh
+    - conky
+    - dunst
+    - pavucontrol
+    - arandr
+    - rofi
+    - vagrant
+    - vagrant-libvirt
+    - hexchat
+    - chromium
+  become: true
